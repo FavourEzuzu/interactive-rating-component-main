@@ -1,13 +1,17 @@
 var submitButton = document.querySelector("#submit");
-var rate = document.querySelector("rate");
+var rate = document.querySelector(".rate_point");
 var numberOfButtons = document.querySelectorAll(".button").length;
-var rateNumber = 0;
+var rateNumber = null;
 var thankYouCard = document.querySelector(".thankyou-card")
 var ratingsCard = document.querySelector(".rating-card")
 
 //  Detecting when the buttons are clicked
 for (var i = 0; i<numberOfButtons; i++) {
     document.querySelectorAll(".button")[i].addEventListener("click", function () {
+        var active = document.querySelector(".pressed")
+        if (active) {
+            active.classList.remove("pressed")
+        }
         rateNumber = this.innerHTML;
         console.log(rateNumber);
         buttonAnimation(rateNumber);
@@ -19,12 +23,12 @@ submitButton.addEventListener("click", function () {
         alert("We are expecting a rating!");
         console.log(rateNumber);
     }
-    rate.innerHTML = rateNumber;
-    ratingsCard.classList.add("main-card ")
-    thankYouCard.classList.add("")
+    rate.innerText = rateNumber;
+    ratingsCard.classList.add("hidden");
+    thankYouCard.classList.remove("hidden");
 })
 // animating the buttons
-// function buttonAnimation(currentButton) {
-//     var activeButton = document.querySelector("."+currentButton)
-//     activeButton.classList.add("pressed");
-// }
+function buttonAnimation(currentButton) {
+    var activeButton = document.querySelector("._"+currentButton)
+    activeButton.classList.add("pressed");
+}
